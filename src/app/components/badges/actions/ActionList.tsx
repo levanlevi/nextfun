@@ -19,7 +19,7 @@ const ActionList = () => {
                 <Box
                     className="flex-1"
                     key={index}>
-                    <Box className="border-b-2 pb-2 border-lime-dark">
+                    <Box className={`border-b-2 pb-2 ${action.isComplete ? 'border-lime-dark' : 'border-none'}`}>
                         <Action
                             text={action.text}
                             isComplete={action.isComplete}>
