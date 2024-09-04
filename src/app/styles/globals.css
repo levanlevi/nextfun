@@ -20,3 +20,21 @@
 .bg2 {
   background: #00002D;
 }
+.bg-default {
+  background: #18191b;
+}
+.bg-lightgrey {
+  background: #202224;
+}
+.bg-lime-fade {
+  background: rgba(39, 209, 127, 0.1);
+}
+
+.lime-border {
+  border: 1px solid #27D17F;
+}
+
+.lime {
+  color: #27D17F;
+}
+
