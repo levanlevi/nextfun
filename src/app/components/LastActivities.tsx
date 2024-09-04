@@ -8,6 +8,8 @@ const LastActivities = () => {
     const activities = [
         { activity: 'Login', points: 10, date: '2024-09-01', txId: '123ABC', link: '#' },
         { activity: 'Purchase', points: 20, date: '2024-09-02', txId: '456DEF', link: '#' },
+        { activity: 'Login', points: 10, date: '2024-09-01', txId: '123ABC', link: '#' },
+        { activity: 'Purchase', points: 20, date: '2024-09-02', txId: '456DEF', link: '#' },
     ];
 
     return (

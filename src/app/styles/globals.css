@@ -29,6 +29,16 @@
 .bg-lime-fade {
   background: rgba(39, 209, 127, 0.1);
 }
+.bg-card-body {
+  background-color: #0c0e10;
+}
+.bg-card-header {
+  background-color: #111315;
+}
+
+.border-lime-dark {
+  border-color: #006258;
+}
 
 .lime-border {
   border: 1px solid #27D17F;
@@ -38,3 +48,10 @@
   color: #27D17F;
 }
 
+
+.primary-text {
+  color: white;
+}
+.secondary-text {
+  color: grey;
+}

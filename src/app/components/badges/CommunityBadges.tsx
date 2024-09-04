@@ -1,5 +1,6 @@
 import { Box, Card } from "@radix-ui/themes";
 import CommunityBadge from "./CommunityBadge";
+import AbsintheCard from "../common/card/AbsintheCard";
 
 const CommunityBadges = () => {
     const badges = [{
@@ -14,8 +15,8 @@ const CommunityBadges = () => {
     }];
 
     return (
-        <Card className="p-0 pb-5">
-            <Box className="px-5 py-3 bg-lightgrey">
+        <Card className="p-0 pb-5" variant="classic">
+            <Box className="px-5 py-3">
                 <h2>Community Badges</h2>
             </Box>
             <Box className="flex space-x-2 p-5">
