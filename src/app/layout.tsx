@@ -21,11 +21,13 @@ export default function RootLayout({
     <html lang="en" className="dark">
       <body className={inter.className}>
         <Theme>
-          <Header />
-          <main>
-            {children}
-          </main>
-          <Footer />
+          <div className="px-[112px]">
+            <Header />
+            <main>
+              {children}
+            </main>
+            <Footer />
+          </div>
         </Theme>
       </body>
     </html>
