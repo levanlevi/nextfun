@@ -7,11 +7,15 @@ import { Button } from '@radix-ui/themes';
 
 const Header = memo(() => {
     return (
-        <header className="p-4 flex items-center justify-between px-[112px]">
+        <header className="p-4 flex items-center justify-between px-[112px] border-b-2 border-default mb-10">
             <div className="flex items-center space-x-4">
                 <Link href="/">
-                    <Image src={logo} alt="Logo" width={137} height={32}
-                        layout='intrinsic' />
+                    <Image
+                    className="mr-10"
+                        src={logo}
+                        alt="Logo"
+                        height={32}
+                        layout="intrinsic" />
                 </Link>
 
                 <nav>

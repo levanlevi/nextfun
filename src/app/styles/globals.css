@@ -39,6 +39,9 @@
 .border-lime-dark {
   border-color: #006258;
 }
+.border-default {
+  border-color: #16181a;
+}
 
 .lime-border {
   border: 1px solid #27D17F;
