@@ -6,6 +6,7 @@ import { gql, useSubscription } from "@apollo/client";
 import { Activity } from "@/types/Activity";
 import { LogsStream, LogsStreamSubscriptionResponse } from "@/types/gql/LogsStreamResponse";
 import { formatDate, formatTXID } from "@/utils/formatting";
+import { copyToClipboard } from "@/utils/copy";
 
 const GET_LOGS = gql`
     subscription ActivityLogsSubscription {
@@ -18,6 +19,13 @@ const GET_LOGS = gql`
         }
     }
 `;
+
+const handleCopy = (txId: string) => {
+    copyToClipboard(txId,
+        // todo replace with toast
+        () => console.log('Copied'),
+        () => console.log('Error copying'));
+}
 
 const LastActivities = () => {
     const { data, loading, error } =
@@ -80,7 +88,9 @@ const LastActivities = () => {
                                     size="1"
                                     variant="soft"
                                     color="gray"
-                                    radius="full">
+                                    radius="full"
+                                    onClick={() => handleCopy(activity.txId)}
+                                >
                                     Copy
                                 </Button>
                             </div>
