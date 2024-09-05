@@ -20,18 +20,23 @@
 .bg2 {
   background: #00002D;
 }
+
 .bg-default {
   background: #18191b;
 }
+
 .bg-lightgrey {
   background: #202224;
 }
+
 .bg-lime-fade {
   background: rgba(39, 209, 127, 0.1);
 }
+
 .bg-card-body {
   background-color: #0c0e10;
 }
+
 .bg-card-header {
   background-color: #111315;
 }
@@ -39,6 +44,7 @@
 .border-lime-dark {
   border-color: #006258;
 }
+
 .border-default {
   border-color: #16181a;
 }
@@ -55,6 +61,13 @@
 .primary-text {
   color: white;
 }
+
 .secondary-text {
   color: grey;
+}
+
+@keyframes scaleClick {
+  0% { transform: scale(1); }
+  50% { transform: scale(0.95); }
+  100% { transform: scale(1); }
 }

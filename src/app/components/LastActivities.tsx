@@ -1,4 +1,4 @@
-import { Badge, Button, Table, Text } from "@radix-ui/themes";
+import { Badge, Table, Text } from "@radix-ui/themes";
 import { ExternalLinkIcon } from '@radix-ui/react-icons'
 import React from "react";
 import Link from "next/link";
@@ -6,7 +6,7 @@ import { gql, useSubscription } from "@apollo/client";
 import { Activity } from "@/types/Activity";
 import { LogsStream, LogsStreamSubscriptionResponse } from "@/types/gql/LogsStreamResponse";
 import { formatDate, formatTXID } from "@/utils/formatting";
-import { copyToClipboard } from "@/utils/copy";
+import CopyButton from "./common/CopyButton";
 
 const GET_LOGS = gql`
     subscription ActivityLogsSubscription {
@@ -19,13 +19,6 @@ const GET_LOGS = gql`
         }
     }
 `;
-
-const handleCopy = (txId: string) => {
-    copyToClipboard(txId,
-        // todo replace with toast
-        () => console.log('Copied'),
-        () => console.log('Error copying'));
-}
 
 const LastActivities = () => {
     const { data, loading, error } =
@@ -84,15 +77,7 @@ const LastActivities = () => {
                                 <Text className="md:w-[calc(12ch+1.5rem)] truncate">
                                     {formatTXID(activity.txId)}
                                 </Text>
-                                <Button
-                                    size="1"
-                                    variant="soft"
-                                    color="gray"
-                                    radius="full"
-                                    onClick={() => handleCopy(activity.txId)}
-                                >
-                                    Copy
-                                </Button>
+                                <CopyButton textToCopy={activity.txId} />
                             </div>
                         </Table.Cell>
                         <Table.Cell>
