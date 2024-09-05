@@ -1,7 +1,10 @@
+"use client";
+
 import { Heading } from "@radix-ui/themes";
 import LastActivities from "./components/LastActivities";
 import CommunityBadges from "./components/badges/CommunityBadges";
 import Badges from "./components/badges/Badges";
+import { useContext } from 'react';
 
 export default function Home() {
   return (

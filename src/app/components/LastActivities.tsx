@@ -2,15 +2,39 @@ import { Badge, Button, Table, Text } from "@radix-ui/themes";
 import { ExternalLinkIcon } from '@radix-ui/react-icons'
 import React from "react";
 import Link from "next/link";
+import { gql, useSubscription } from "@apollo/client";
+
+const GET_LOGS = gql`
+    subscription ActivityLogsSubscription {
+        logs_stream(batch_size: 10, cursor: {initial_value: {block_number: "0"}}) {
+            transaction_hash
+            block_timestamp
+            address
+            decoded(path: "amount0In")
+            block_number
+        }
+    }
+`;
+
 
 const LastActivities = () => {
+    const { data, loading, error } = useSubscription(GET_LOGS);
 
-    const activities = [
-        { activity: 'Login', points: 10, date: '2024-09-01', txId: '123ABC', link: '#' },
-        { activity: 'Purchase', points: 20, date: '2024-09-02', txId: '456DEF', link: '#' },
-        { activity: 'Login', points: 10, date: '2024-09-01', txId: '123ABC', link: '#' },
-        { activity: 'Purchase', points: 20, date: '2024-09-02', txId: '456DEF', link: '#' },
-    ];
+    // todo fix review
+    if (loading) return <p>Loading...</p>;
+    // todo fix review
+    if (error) return <p>Error: {error.message}</p>;
+
+    // todo fix types
+    const activities = data.logs_stream.map((log) => {
+        return {
+            activity: 'Swap',
+            points: log.decoded,
+            date: log.block_timestamp,
+            txId: log.transaction_hash,
+            link: '#'
+        }
+    });
 
     return (
         <Table.Root
