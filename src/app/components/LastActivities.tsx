@@ -3,6 +3,9 @@ import { ExternalLinkIcon } from '@radix-ui/react-icons'
 import React from "react";
 import Link from "next/link";
 import { gql, useSubscription } from "@apollo/client";
+import { Activity } from "@/types/Activity";
+import { LogsStream, LogsStreamSubscriptionResponse } from "@/types/gql/LogsStreamResponse";
+import { formatDate, formatTXID } from "@/utils/formatting";
 
 const GET_LOGS = gql`
     subscription ActivityLogsSubscription {
@@ -16,17 +19,16 @@ const GET_LOGS = gql`
     }
 `;
 
-
 const LastActivities = () => {
-    const { data, loading, error } = useSubscription(GET_LOGS);
+    const { data, loading, error } =
+        useSubscription<LogsStreamSubscriptionResponse>(GET_LOGS);
 
     // todo fix review
     if (loading) return <p>Loading...</p>;
     // todo fix review
     if (error) return <p>Error: {error.message}</p>;
 
-    // todo fix types
-    const activities = data.logs_stream.map((log) => {
+    const activities: Activity[] = data?.logs_stream.map((log: LogsStream) => {
         return {
             activity: 'Swap',
             points: log.decoded,
@@ -34,7 +36,7 @@ const LastActivities = () => {
             txId: log.transaction_hash,
             link: '#'
         }
-    });
+    }) ?? [];
 
     return (
         <Table.Root
@@ -57,18 +59,22 @@ const LastActivities = () => {
                             {activity.activity}
                         </Table.Cell>
                         <Table.Cell>
-                            <Badge color="jade" variant="soft" radius="full">
-                                +{activity.points}
-                            </Badge>
+                            {/* text width calculation so that table doesn’t fluctuate horizontally  */}
+                            <Text className="md:w-[calc(12ch+1rem)] truncate">
+                                <Badge color="jade" variant="soft" radius="full">
+                                    {activity.points > 0 ? '+' : ''}{activity.points}
+                                </Badge>
+                            </Text>
                         </Table.Cell>
                         <Table.Cell>
-                            {activity.date}
-                            dd.mm.yyyy hh:mm:ss
+                            <Text className="md:w-[calc(22ch+1.5rem)] truncate">
+                                {formatDate(activity.date)}
+                            </Text>
                         </Table.Cell>
                         <Table.Cell>
                             <div className="flex items-center space-x-2">
-                                <Text>
-                                    {activity.txId}
+                                <Text className="md:w-[calc(12ch+1.5rem)] truncate">
+                                    {formatTXID(activity.txId)}
                                 </Text>
                                 <Button
                                     size="1"
