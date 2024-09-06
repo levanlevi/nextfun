@@ -11,7 +11,6 @@ const BadgeCard: React.FC<Badge> = (badge) => {
                 <h2>{badge.title}</h2>
             </Box>
             <Box className="flex justify-center items-center w-full h-[112px] bg-background-elevation-3">
-                {/* <Image src={pudgyOg} className="object-contain" alt="pudgy OG" /> */}
                 <Image
                     src={`/images/${badge.id}.png`}
                     alt={badge.title}
