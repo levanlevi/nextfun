@@ -1,12 +1,14 @@
-import { Badge, Table, Text } from "@radix-ui/themes";
+import { Badge, Box, Table, Text } from "@radix-ui/themes";
 import { ExternalLinkIcon } from '@radix-ui/react-icons'
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { gql, useSubscription } from "@apollo/client";
 import { Activity } from "@/types/Activity";
 import { LogsStream, LogsStreamSubscriptionResponse } from "@/types/gql/LogsStreamResponse";
-import { formatDate, formatTXID } from "@/utils/formatting";
+import { formatDate, formatTXID, formatTime } from "@/utils/formatting";
 import CopyButton from "./common/CopyButton";
+import Image from "next/image";
+import { bridged, tx } from "../../../public";
 
 const GET_LOGS = gql`
     subscription ActivityLogsSubscription(
@@ -26,7 +28,7 @@ const GET_LOGS = gql`
 
 const LastActivities = () => {
     // This is a hack to get the last 50 seconds of logs for smooth demo app
-    const nowMinus50Secs = new Date(new Date().getTime() - 75 * 1000);
+    const nowMinus50Secs = new Date(new Date().getTime() - 475 * 1000);
     const [lastBlockTimeStamp, setLastBlockTimeStamp] = useState(nowMinus50Secs.toISOString());
     const [activities, setActivities] = useState<Activity[]>([]);
     const { data, loading, error } =
@@ -52,7 +54,7 @@ const LastActivities = () => {
                 }
                 const newActivities = logs.map((log: LogsStream) => {
                     return {
-                        activity: 'Swap',
+                        activity: log.decoded % 4 === 0 ? 'Bridged' : 'Transaction',
                         points: log.decoded,
                         date: log.block_timestamp,
                         txId: log.transaction_hash,
@@ -86,7 +88,14 @@ const LastActivities = () => {
                 {activities && activities.length > 0 && activities.map((activity) => (
                     <Table.Row key={activity.txId}>
                         <Table.Cell>
-                            {activity.activity}
+                            <Box className="flex flex-row space-x-2">
+                                {
+                                    activity.activity === 'Transaction' ?
+                                        <Image width={16} src={tx} alt="Transaction"></Image>
+                                        : <Image width={16} src={bridged} alt="Bridged"></Image>
+                                }
+                                <Text className="text-text-primary font-medium">{activity.activity}</Text>
+                            </Box>
                         </Table.Cell>
                         <Table.Cell>
                             {/* text width calculation so that table doesn’t fluctuate horizontally  */}
@@ -97,9 +106,14 @@ const LastActivities = () => {
                             </Text>
                         </Table.Cell>
                         <Table.Cell>
-                            <Text className="md:w-[calc(22ch+1.5rem)] truncate">
-                                {formatDate(activity.date)}
-                            </Text>
+                            <Box className="flex flex-row text-text-secondary font-medium">
+                                <Box className="p-1">
+                                    {formatDate(activity.date)}
+                                </Box>
+                                <Box className="bg-background-elevation-3 rounded-xl p-1">
+                                    {formatTime(activity.date)}
+                                </Box>
+                            </Box>
                         </Table.Cell>
                         <Table.Cell>
                             <div className="flex items-center space-x-2">

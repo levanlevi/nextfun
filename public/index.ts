@@ -9,6 +9,9 @@ import liquidityMachine from './images/liquidityMachine.png';
 import arrowPrev from './images/arrowPrev.png';
 import arrowNext from './images/arrowNext.png';
 
+import bridged from './images/bridged.png';
+import tx from './images/transaction.png';
+
 export {
     logo,
     profileIcon,
@@ -20,5 +23,8 @@ export {
     liquidityMachine,
 
     arrowPrev,
-    arrowNext
+    arrowNext,
+
+    tx,
+    bridged
 };

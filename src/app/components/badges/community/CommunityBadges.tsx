@@ -14,7 +14,7 @@ const BadgeCards = () => {
     }];
 
     return (
-        <Box className="p-0 pb-5 rounded-bg">
+        <Box className="p-0 pb-5 rounded-lg">
             <Box className="px-5 py-3 bg-background-elevation-3 rounded-t-lg">
                 <h2 className="font-medium">Community Badges</h2>
             </Box>
@@ -25,7 +25,8 @@ const BadgeCards = () => {
                         name={badge.name}
                         image={badge.image}
                         multiplier={badge.multiplier}
-                        selected={badge.selected} />
+                        selected={badge.selected}
+                    />
                 ))}
             </Box>
         </Box>

@@ -1,4 +1,4 @@
-import { Box, Button, Skeleton } from "@radix-ui/themes";
+import { Box, Button, Skeleton, Text } from "@radix-ui/themes";
 import BadgeCard from "../BadgeCard";
 import { BadgeCardSkeleton } from "../BadgeCardSkeleton";
 import Image from "next/image";
@@ -46,12 +46,22 @@ const Carousel = () => {
                         <div className="carousel-item" key={index}>
                             {
                                 item.selected ? (
-                                    <BadgeCard
-                                        name="some hey"
-                                        image="pudgyOg"
-                                        multiplier="2.1"
-                                        selected={false}>
-                                    </BadgeCard>
+                                    <>
+                                        <BadgeCard
+                                            name="some hey"
+                                            image="pudgyOg"
+                                            multiplier="2.1"
+                                            selected={false}>
+                                        </BadgeCard>
+                                        <Box className="bg-background-elevation-2 rounded-lg w-[176px] py-1 px-4 mt-2 flex flex-col">
+                                            <Text className="text-text-primary text-xs font-medium text-center">
+                                                Reward Details
+                                            </Text>
+                                            <Text className="text-text-secondary text-xs font-medium text-center">
+                                                Liquidity Provision to ETH/USDC
+                                            </Text>
+                                        </Box>
+                                    </>
                                 ) : (
                                     <BadgeCardSkeleton>
                                     </BadgeCardSkeleton>
