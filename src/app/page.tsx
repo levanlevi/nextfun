@@ -1,15 +1,23 @@
 "use client";
 
-import { Heading, Text } from "@radix-ui/themes";
+import { Box, Heading, Text } from "@radix-ui/themes";
 import LastActivities from "./components/LastActivities";
 import Badges from "./components/badges/Badges";
 
 export default function Home() {
   return (
     <div>
-      <Text className="mb-2 text-text-secondary font-semibold">Last Activities</Text>
+      <Box className="mb-2 text-text-secondary font-semibold">
+        <Text>
+          Last Activities
+        </Text>
+      </Box>
       <LastActivities />
-      <Text className="mt-5 mb-2 text-text-secondary font-semibold">Badges</Text>
+      <Box className="mt-5 mb-4 text-text-secondary font-semibold">
+        <Text>
+          Badges
+        </Text>
+      </Box>
       <Badges />
     </div>
   );

@@ -6,6 +6,8 @@ import pudgyOg from './images/pudgyOg.png';
 import pathfinderOg from './images/pathfinderOg.png';
 import incomeEngineer from './images/incomeEngineer.png';
 import liquidityMachine from './images/liquidityMachine.png';
+import arrowPrev from './images/arrowPrev.png';
+import arrowNext from './images/arrowNext.png';
 
 export {
     logo,
@@ -15,5 +17,8 @@ export {
     pudgyOg,
     pathfinderOg,
     incomeEngineer,
-    liquidityMachine
+    liquidityMachine,
+
+    arrowPrev,
+    arrowNext
 };

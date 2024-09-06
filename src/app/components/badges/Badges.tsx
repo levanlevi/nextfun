@@ -7,7 +7,7 @@ import ActionList from "./actions/ActionList";
 const Badges = () => {
     return (
         <>
-            <Box className="mb-5 bg-card-body">
+            <Box className="bg-background-elevation-1 mb-4 px-4 py-2 bg-card-body rounded-bg">
                 <Carousel />
                 <Info />
                 <ActionList />
