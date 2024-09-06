@@ -17,6 +17,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
+      <head>
+        <link
+          rel="stylesheet"
+          href="https://unpkg.com/swiper@7/swiper-bundle.min.css"
+        />
+      </head>
       <body className={inter.className}>
         <Theme
           radius="medium"

@@ -42,3 +42,12 @@
   50% { transform: scale(0.95); }
   100% { transform: scale(1); }
 }
+
+
+.swiper-slide-active {
+  background-color: red;
+}
+
+.swiper-slide {
+  width: 50px;
+}

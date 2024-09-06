@@ -21,5 +21,5 @@ export const BadgeCardSkeleton = () => {
                 </Box>
             </Box>
         </>
-    );
+    );     
 };

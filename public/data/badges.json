@@ -75,7 +75,7 @@
             }
         ],
         "description": "Active trader in cryptocurrency markets",
-        "selected": false
+        "selected": true
     },
     {
         "id": "checkBack",

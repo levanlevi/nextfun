@@ -14,7 +14,6 @@ const Header = memo(() => {
                         src={logo}
                         alt="Logo"
                         height={32}
-                        layout="intrinsic"
                     />
                 </Link>
 
