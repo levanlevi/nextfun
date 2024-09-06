@@ -7,16 +7,15 @@ import Link from 'next/link';
 
 const Footer = memo(() => {
     return (
-        <footer className='flex justify-between items-center mt-2 px-[112px]'
-            style={{ backgroundColor: 'var(--gray-a2)' }}>
+        <footer className='flex justify-between items-center p-2 px-[112px] bg-background-elevation-2'>
             <Box className='flex space-x-4'>
-                <Link href='https://discord.com' target='_blank'>
+                <Link href='https://discord.com' className='bg-background-elevation-3 p-1 rounded-lg' target='_blank'>
                     <DiscordLogoIcon />
                 </Link>
-                <Link href='https://x.com' target='_blank'>
+                <Link href='https://x.com' className='bg-background-elevation-3 p-1 rounded-lg' target='_blank'>
                     <TwitterLogoIcon />
                 </Link>
-                <Link href='https://github.com' target='_blank'>
+                <Link href='https://github.com' className='bg-background-elevation-3 p-1 rounded-lg' target='_blank'>
                     <GitHubLogoIcon />
                 </Link>
             </Box>

@@ -4,9 +4,29 @@
 @import '@radix-ui/themes/styles.css';
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --primary: #006258;
+  --primary-hover: #8AB7B2;
+  --primary-disabled: rgba(0, 98, 88, 0.2);
+
+  --secondary-default: #FFFFFF;
+
+  --text-primary: #F7F7F8;
+  --text-secondary: #ABAFB4;
+  --text-disabled: rgba(171, 175, 180, 0.6);
+  --text-button: #FFFFFF;
+
+  --background-default: #080A0B;
+  --background-elevation-1: #0C0E10;
+  --background-elevation-2: #111315;
+  --background-elevation-3: #16181A;
+
+  --states-success-default: #27D17F;
+  --states-success-elevation-1: rgba(39, 209, 127, 0.1);
+  --states-success-elevation-2: rgba(39, 209, 127, 0.5);
+
+  --states-error-default: #F44336;
+
+  --states-warning-default: #FFC107;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -15,55 +35,6 @@
     --background-start-rgb: 0, 0, 0;
     --background-end-rgb: 0, 0, 0;
   }
-}
-
-.bg2 {
-  background: #00002D;
-}
-
-.bg-default {
-  background: #18191b;
-}
-
-.bg-lightgrey {
-  background: #202224;
-}
-
-.bg-lime-fade {
-  background: rgba(39, 209, 127, 0.1);
-}
-
-.bg-card-body {
-  background-color: #0c0e10;
-}
-
-.bg-card-header {
-  background-color: #111315;
-}
-
-.border-lime-dark {
-  border-color: #006258;
-}
-
-.border-default {
-  border-color: #16181a;
-}
-
-.lime-border {
-  border: 1px solid #27D17F;
-}
-
-.lime {
-  color: #27D17F;
-}
-
-
-.primary-text {
-  color: white;
-}
-
-.secondary-text {
-  color: grey;
 }
 
 @keyframes scaleClick {

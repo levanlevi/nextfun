@@ -8,10 +8,48 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+      colors: {
+        primary: {
+          DEFAULT: 'var(--primary-default)',
+          hover: 'var(--primary-hover)',
+          disabled: 'var(--primary-disabled)',
+        },
+        
+        secondary: {
+          DEFAULT: 'var(--secondary-default)',
+        },
+
+        text: {
+          primary: 'var(--text-primary)',
+          secondary: 'var(--text-secondary)',
+          disabled: 'var(--text-disabled)',
+          buttonText: 'var(--text-button)'
+        },
+
+        background: {
+          DEFAULT: 'var(--background-default)',
+          elevation: {
+            1: 'var(--background-elevation-1)',
+            2: 'var(--background-elevation-2)',
+            3: 'var(--background-elevation-3)',
+          },
+        },
+
+        states: {
+          success: {
+            DEFAULT: 'var(--states-success-default)',
+            elevation: {
+              1: 'var(--states-success-elevation-1)',
+              2: 'var(--states-success-elevation-2)',
+            },
+          },
+          error: {
+            DEFAULT: 'var(--states-error-default)'
+          },
+          warning: {
+            DEFAULT: 'var(--states-warning-default)'
+          }
+        }
       },
     },
   },

@@ -26,7 +26,7 @@ const GET_LOGS = gql`
 
 const LastActivities = () => {
     // This is a hack to get the last 50 seconds of logs for smooth demo app
-    const nowMinus50Secs = new Date(new Date().getTime() - 45 * 1000);
+    const nowMinus50Secs = new Date(new Date().getTime() - 75 * 1000);
     const [lastBlockTimeStamp, setLastBlockTimeStamp] = useState(nowMinus50Secs.toISOString());
     const [activities, setActivities] = useState<Activity[]>([]);
     const { data, loading, error } =
@@ -111,7 +111,7 @@ const LastActivities = () => {
                         </Table.Cell>
                         <Table.Cell>
                             <Link href="/">
-                                <ExternalLinkIcon className="text-gray-500" />
+                                <ExternalLinkIcon className="text-primary" />
                             </Link>
                         </Table.Cell>
                     </Table.Row>

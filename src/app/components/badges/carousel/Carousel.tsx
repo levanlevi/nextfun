@@ -35,7 +35,7 @@ const Carousel = () => {
     return (
         <>
             <div className="carousel-container flex flex-row justify-between">
-                <Button>Prev</Button>
+                <Button className="">Prev</Button>
                 <div className="carousel-body flex flex-row space-x-2">
                     {list.map((item, index) => (
                         <div className="carousel-item" key={index}>

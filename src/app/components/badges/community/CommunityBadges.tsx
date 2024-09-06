@@ -1,7 +1,7 @@
 import { Box, Card } from "@radix-ui/themes";
-import CommunityBadge from "../BadgeCard";
+import BadgeCard from "../BadgeCard";
 
-const CommunityBadges = () => {
+const BadgeCards = () => {
     const badges = [{
         name: "Pudgy OG",
         image: "pudgyOg",
@@ -14,13 +14,13 @@ const CommunityBadges = () => {
     }];
 
     return (
-        <Card className="p-0 pb-5" variant="classic">
-            <Box className="px-5 py-3 bg-card-header">
-                <h2>Community Badges</h2>
+        <Box className="p-0 pb-5 rounded-bg">
+            <Box className="px-5 py-3 bg-background-elevation-3 rounded-t-lg">
+                <h2 className="font-medium">Community Badges</h2>
             </Box>
-            <Box className="flex space-x-2 p-5 .bg-card-body">
+            <Box className="flex space-x-2 p-5 bg-background-elevation-1 rounded-b-lg">
                 {badges.map((badge, index) => (
-                    <CommunityBadge
+                    <BadgeCard
                         key={index}
                         name={badge.name}
                         image={badge.image}
@@ -28,8 +28,8 @@ const CommunityBadges = () => {
                         selected={badge.selected} />
                 ))}
             </Box>
-        </Card>
+        </Box>
     );
 };
 
-export default CommunityBadges;
+export default BadgeCards;

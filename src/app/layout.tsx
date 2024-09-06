@@ -18,7 +18,12 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body className={inter.className}>
-        <Theme radius="medium">
+        <Theme
+          radius="medium"
+          accentColor="gray"
+          appearance="dark"
+          panelBackground="translucent"
+          className="bg-background-default">
           <ApolloProvider client={client}>
             <Header />
             <div className="px-[112px]">
