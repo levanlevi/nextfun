@@ -3,49 +3,27 @@ import BadgeCard from "../BadgeCard";
 import { BadgeCardSkeleton } from "../BadgeCardSkeleton";
 import Image from "next/image";
 import { arrowPrev, arrowNext } from "./../../../../../public";
+import badgesJson from './../../../../../public/data/badges.json';
+import { BadgesData } from "@/types/badge";
 
 
 const Carousel = () => {
+    const badgeList: BadgesData = badgesJson as BadgesData;
 
-    const list: any[] = [{
-        name: "Pudgy OG",
-        image: "pudgyOg",
-        multiplier: "1.5",
-        selected: true
-    }
-        , {
-        name: "Discord OG",
-        image: "discordOg",
-        multiplier: "1.5",
-    }
-        , {
-        name: "Discord OG",
-        image: "discordOg",
-        multiplier: "1.5",
-    }
-        , {
-        name: "Discord OG",
-        image: "discordOg",
-        multiplier: "1.5",
-    }
-        , {
-        name: "Discord OG",
-        image: "discordOg",
-        multiplier: "1.5",
-    }
-    ];
+    const activeIndex = Math.floor(badgeList.length / 2);
+
 
     return (
         <>
-            <div className="carousel-container flex flex-row justify-between">
+            <Box className="flex flex-row justify-between">
                 <Box className="bg-background-elevation-3 hover:bg-background-elevation-2 cursor-pointer flex items-center justify-center rounded-xl px-3">
                     <Image src={arrowPrev} width={8} height={8} alt="Prev" />
                 </Box>
-                <div className="carousel-body flex flex-row space-x-2">
-                    {list.map((item, index) => (
-                        <div className="carousel-item" key={index}>
+                <Box className="flex flex-row space-x-2">
+                    {badgeList.map((item, index) => (
+                        <Box className="bzz" key={index}>
                             {
-                                item.selected ? (
+                                (index === activeIndex) ? (
                                     <>
                                         <BadgeCard
                                             id="pudgyOg"
@@ -68,15 +46,14 @@ const Carousel = () => {
                                     </BadgeCardSkeleton>
                                 )
                             }
-                        </div>
+                        </Box>
                     ))}
-                </div>
+                </Box>
                 <Box className="bg-background-elevation-3 hover:bg-background-elevation-2 cursor-pointer flex items-center justify-center rounded-xl px-3">
                     <Image src={arrowNext} width={8} height={8} alt="Next" />
                 </Box>
-            </div>
+            </Box>
         </>
-
     );
 };
 
