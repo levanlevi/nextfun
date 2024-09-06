@@ -10,7 +10,7 @@ export const BadgeCardSkeleton = () => {
                     <Image src={pudgyOg} className="object-contain" width="64" height="64" alt="pudgy OG" />
                 </Box>
             </Box>
-            <Box className="flex flex-col mt-1 justify-between p-0 rounded-lg bg-default">
+            <Box className="flex flex-col mt-1 justify-between p-0 rounded-lg bg-default w-[96px]">
                 <Box className="flex flex-row space-x-2 px-1">
                     <Skeleton className="flex-1 text-disabled"></Skeleton>
                     <Skeleton className="flex-1 text-disabled"></Skeleton>

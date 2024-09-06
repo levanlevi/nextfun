@@ -7,6 +7,7 @@ import Footer from "./components/Footer";
 import { Theme } from "@radix-ui/themes";
 import { ApolloProvider } from "@apollo/client";
 import client from "./lib/apolloClient";
+import EmblaCarousel from "./components/badges/carousel/CustomCarousel";
 
 const inter = Inter({ subsets: ["latin"] });
 
