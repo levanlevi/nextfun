@@ -1,5 +1,5 @@
 import { copyToClipboard } from "@/utils/copy";
-import { Button, Text } from "@radix-ui/themes";
+import { Box, Button, Text } from "@radix-ui/themes";
 import { useState } from "react";
 
 const CopyButton: React.FC<{ textToCopy: string }> = ({ textToCopy }) => {
@@ -17,17 +17,11 @@ const CopyButton: React.FC<{ textToCopy: string }> = ({ textToCopy }) => {
     }
 
     return (
-        <Button
-            size="1"
-            variant="soft"
-            color="gray"
-            radius="full"
-            className={`border-4 ${isAnimating ? 'scaleClick' : ''}`}
+        <Box
+            className={`bg-background-elevation-3 text-text-secondary font-medium cursor-pointer px-3 py-1 rounded-xl ${isAnimating ? 'scaleClick' : ''}`}
             onClick={handleCopy}>
-            <Text className="md:w-[calc(6ch+1rem)] truncate">
-                {displayName}
-            </Text>
-        </Button>
+            {displayName}
+        </Box>
     );
 }
 
