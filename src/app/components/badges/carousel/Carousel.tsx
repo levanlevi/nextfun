@@ -48,9 +48,10 @@ const Carousel = () => {
                                 item.selected ? (
                                     <>
                                         <BadgeCard
-                                            name="some hey"
-                                            image="pudgyOg"
-                                            multiplier="2.1"
+                                            id="pudgyOg"
+                                            title="some hey"
+                                            multiplier={2.1}
+                                            description="some description"
                                             selected={false}>
                                         </BadgeCard>
                                         <Box className="bg-background-elevation-2 rounded-lg w-[176px] py-1 px-4 mt-2 flex flex-col">
