@@ -54,7 +54,7 @@ const Header = memo(() => {
                     How It Works
                 </Box>
 
-                <Box className="bg-background-elevation-3 rounded-3xl text-center p-2">
+                <Box className="bg-background-elevation-3 cursor-pointer hover:bg-background-elevation-2 rounded-3xl text-center p-2">
                     <Box className="flex items-center space-x-1">
                         <Image
                             src={profileIcon}
@@ -62,7 +62,7 @@ const Header = memo(() => {
                             width={18}
                             height={18}
                             className="rounded-full" />
-                        <span className='font-semibold text-text-primary'>
+                        <span className="font-semibold text-text-primary">
                             user.name
                         </span>
                     </Box>
