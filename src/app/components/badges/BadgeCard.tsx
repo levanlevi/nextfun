@@ -1,8 +1,8 @@
 import { Box, Card, Text } from "@radix-ui/themes";
 import Image from "next/image";
-import { discordOg, pudgyOg } from "./../../../../public";
+import { discordOg, pudgyOg } from "../../../../public";
 
-interface CommunityBadgeProps {
+interface BadgeCardProps {
     name: string;
     // todo: fix this
     // image: StaticImageData;
@@ -11,11 +11,10 @@ interface CommunityBadgeProps {
     selected?: boolean;
 }
 
-const CommunityBadge: React.FC<CommunityBadgeProps> = ({ name, image, multiplier, selected }) => {
+const BadgeCard: React.FC<BadgeCardProps> = ({ name, image, multiplier, selected }) => {
     return (
         <Card className={`flex flex-col justify-between p-0 rounded-lg h-[178px] w-[176px]
                     ${selected ? "border lime-border" : "border-none"}`}>
-
             <Box className="text-center bg-default p-1">
                 <h2>{name}</h2>
             </Box>
@@ -29,4 +28,4 @@ const CommunityBadge: React.FC<CommunityBadgeProps> = ({ name, image, multiplier
     );
 };
 
-export default CommunityBadge;
+export default BadgeCard;

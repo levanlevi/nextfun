@@ -1,5 +1,5 @@
 import { Box, Card } from "@radix-ui/themes";
-import CommunityBadge from "./CommunityBadge";
+import CommunityBadge from "../BadgeCard";
 
 const CommunityBadges = () => {
     const badges = [{

@@ -1,6 +1,6 @@
 import { Card } from "@radix-ui/themes";
-import Carousel from "./Carousel";
-import CommunityBadges from "./CommunityBadges";
+import Carousel from "./carousel/Carousel";
+import CommunityBadges from "./community/CommunityBadges";
 import Info from "./Info";
 import ActionList from "./actions/ActionList";
 
