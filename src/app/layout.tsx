@@ -23,7 +23,7 @@ export default function RootLayout({
           accentColor="gray"
           appearance="dark"
           panelBackground="translucent"
-          className="bg-background-default">
+          className="bg-background">
           <ApolloProvider client={client}>
             <Header />
             <div className="px-[112px]">
