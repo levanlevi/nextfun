@@ -46,6 +46,10 @@
             {
                 "isComplete": false,
                 "text": "Collected 20 rare NFTs"
+            },
+            {
+                "isComplete": true,
+                "text": "Changed 20 rare NFTs"
             }
         ],
         "description": "Collector of rare non-fungible tokens",
@@ -57,8 +61,16 @@
         "multiplier": 2.5,
         "actions": [
             {
-                "isComplete": true,
-                "text": "Developed 15 successful smart contracts"
+                "text": "Provide at least $50 liquidity to USDT/ETH",
+                "isComplete": true
+            },
+            {
+                "text": "Provide at least $50 liquidity to USDT/ETH",
+                "isComplete": false
+            },
+            {
+                "text": "Provide at least $50 liquidity to USDT/ETH",
+                "isComplete": false
             }
         ],
         "description": "Developer of smart contracts",
@@ -83,8 +95,16 @@
         "multiplier": 1.7,
         "actions": [
             {
-                "isComplete": false,
-                "text": "Staked tokens worth over $10,000"
+                "text": "Provide at least $630 liquidity to USDT/ETH",
+                "isComplete": true
+            },
+            {
+                "text": "Provide at least $7550 liquidity to USDT/ETH",
+                "isComplete": false
+            },
+            {
+                "text": "Give at least $50 liquidity to Bitcoin/ETH",
+                "isComplete": false
             }
         ],
         "description": "Champion of staking rewards",

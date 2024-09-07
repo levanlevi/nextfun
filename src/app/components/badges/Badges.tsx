@@ -1,9 +1,7 @@
 import { Box, Card } from "@radix-ui/themes";
 import Carousel from "./carousel/Carousel";
 import CommunityBadges from "./community/CommunityBadges";
-import Info from "./Info";
-import ActionList from "./actions/ActionList";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import badgesJson from './../../../../public/data/badges.json';
 import { BadgesData } from "@/types/badge";
 
@@ -27,8 +25,6 @@ const Badges = () => {
                     badgeList={badges}
                     selectedCardId={selectedCardId}
                     onSelectedCardChange={setSelectedCard} />
-                <Info />
-                <ActionList />
             </Box>
             <CommunityBadges
                 badgeList={badges}

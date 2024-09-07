@@ -1,4 +1,4 @@
-export type Action = {
+export type BadgeAction = {
     isComplete: boolean;
     text: string;
 };
@@ -7,7 +7,7 @@ export type Badge = {
     id: string;
     title: string;
     multiplier: number;
-    actions?: Action[];
+    actions?: BadgeAction[];
     description: string;
     selected?: boolean;
 };
