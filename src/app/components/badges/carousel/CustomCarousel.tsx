@@ -62,6 +62,10 @@ const EmblaCarousel = ({
       });
     }, []);
 
+  const handleCarouselBadgeClick = (index: any) => {
+    onDotButtonClick(index);
+  }
+
   useEffect(() => {
     if (!emblaApi) {
       return;
@@ -105,10 +109,6 @@ const EmblaCarousel = ({
       emblaApi.scrollNext();
     }
   }, [emblaApi, goNext]);
-
-  const handleCarouselBadgeClick = (index: any) => {
-    onDotButtonClick(index);
-  }
 
   return (
     <div className="embla">

@@ -49,7 +49,7 @@ const Carousel = ({ badgeList, selectedCardId, onSelectedCardChange }: PropType)
             return (
                 <Box className="embla__slide__badgecard" key={index}>
                     {isActive ? (
-                        <>
+                        <Box className="m-0 m-auto w-[176px]">
                             <BadgeCard badge={{ ...item, selected: true }} />
                             <Box className="bg-background-elevation-2 rounded-lg w-[176px] py-1 px-4 mt-2 flex flex-col">
                                 <Text className="text-text-primary text-xs font-medium text-center">
@@ -59,8 +59,12 @@ const Carousel = ({ badgeList, selectedCardId, onSelectedCardChange }: PropType)
                                     {item.description}
                                 </Text>
                             </Box>
-                        </>
-                    ) : (<BadgeCardSkeleton {...item} />)}
+                        </Box>
+                    ) : (
+                        <Box className="h-[98px] w-[96px] m-auto">
+                            <BadgeCardSkeleton {...item} />
+                        </Box>
+                    )}
                 </Box>
             )
         });
