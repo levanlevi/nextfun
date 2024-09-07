@@ -32,8 +32,8 @@ const BadgeCard: React.FC<PropType> = (props) => {
                     height={64}
                 />
             </Box>
-            <Box className="bg-states-success-elevation-2 text-center p-1.5 rounded-b-lg">
-                <Text className="text-states-success font-medium">{props.badge.multiplier}x</Text>
+            <Box className="bg-states-success-elevation-1 text-center p-1.5 rounded-b-lg">
+                <Text className="text-states-success text-xs font-medium">{props.badge.multiplier}x</Text>
             </Box>
         </Box>
     );
