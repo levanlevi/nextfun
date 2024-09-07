@@ -1,52 +1,36 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useRef } from 'react';
 import {
   EmblaCarouselType,
   EmblaEventType,
   EmblaOptionsType
-} from 'embla-carousel'
-import useEmblaCarousel from 'embla-carousel-react'
-import { useDotButton } from './EmplaCarouselDotButton'
-import { usePrevNextButtons } from './EmblaCarouselArrowButtons'
+} from 'embla-carousel';
+import useEmblaCarousel from 'embla-carousel-react';
+import { useDotButton } from './EmplaCarouselDotButton';
+import { numberWithinRange } from '@/utils/numbers';
 
 type PropType = {
-  slides: any[]
-  options?: EmblaOptionsType,
-  goPrev?: boolean,
-  goNext?: boolean,
-  onActiveIndexChange?: (index: number) => void,
-  activeIndex?: number
-}
+  slides: React.ReactNode[];
+  options?: EmblaOptionsType;
+  goPrev?: boolean;
+  goNext?: boolean;
+  onActiveIndexChange?: (index: number) => void;
+  activeIndex?: number;
+};
 
-const TWEEN_FACTOR_BASE = 0.84
+const TWEEN_FACTOR_BASE = 0.84;
 
-const numberWithinRange = (number: number, min: number, max: number): number =>
-  Math.min(Math.max(number, min), max)
-
-const EmblaCarousel: React.FC<PropType> = (props) => {
-  const { slides, options } = props;
+const EmblaCarousel: React.FC<PropType> = ({
+  slides,
+  options,
+  goPrev,
+  goNext,
+  onActiveIndexChange,
+  activeIndex
+}) => {
   const [emblaRef, emblaApi] = useEmblaCarousel(options);
   const tweenFactor = useRef(0);
   const tweenNodes = useRef<HTMLElement[]>([]);
   const { selectedIndex, onDotButtonClick } = useDotButton(emblaApi);
-
-  useEffect(() => {
-    if (props.onActiveIndexChange) {
-      props.onActiveIndexChange(selectedIndex);
-    }
-  }, [selectedIndex]);
-
-  useEffect(() => {
-    if (props.activeIndex != null) {
-      emblaApi?.scrollTo(props.activeIndex);
-    }
-  }, [props.activeIndex]);
-
-  const {
-    prevBtnDisabled,
-    nextBtnDisabled,
-    onPrevButtonClick,
-    onNextButtonClick
-  } = usePrevNextButtons(emblaApi);
 
   const setTweenFactor = useCallback((emblaApi: EmblaCarouselType) => {
     tweenFactor.current = TWEEN_FACTOR_BASE * emblaApi.scrollSnapList().length
@@ -54,61 +38,69 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
 
   const tweenScale = useCallback(
     (emblaApi: EmblaCarouselType, eventName?: EmblaEventType) => {
-      const engine = emblaApi.internalEngine()
-      const scrollProgress = emblaApi.scrollProgress()
-      const slidesInView = emblaApi.slidesInView()
-      const isScrollEvent = eventName === 'scroll'
+      const engine = emblaApi.internalEngine();
+      const scrollProgress = emblaApi.scrollProgress();
+      const slidesInView = emblaApi.slidesInView();
+      const isScrollEvent = eventName === 'scroll';
 
-      emblaApi
-        .scrollSnapList()
-        .forEach(
-          (scrollSnap, snapIndex) => {
-            let diffToTarget = scrollSnap - scrollProgress
-            const slidesInSnap = engine.slideRegistry[snapIndex]
+      emblaApi.scrollSnapList().forEach((scrollSnap, snapIndex) => {
+        const diffToTarget = scrollSnap - scrollProgress;
+        const slidesInSnap = engine.slideRegistry[snapIndex] || [];
 
-            slidesInSnap?.forEach(slideIndex => {
-              if (isScrollEvent && !slidesInView.includes(slideIndex)) {
-                return;
-              }
+        slidesInSnap.forEach(slideIndex => {
+          if (isScrollEvent && !slidesInView.includes(slideIndex)) {
+            return;
+          }
 
-              const tweenValue = 1 - Math.abs(diffToTarget * tweenFactor.current)
-              const scale = numberWithinRange(tweenValue, 0, 1).toString()
-              const tweenNode = tweenNodes.current[slideIndex]
-              if (tweenNode) {
-                tweenNode.style.transform = `scale(${scale})`
-              }
-            });
-          });
-    },
-    [],
-  )
-
-  useEffect(() => {
-    if (!emblaApi) return
-
-    setTweenFactor(emblaApi)
-    tweenScale(emblaApi)
-    emblaApi
-      .on('reInit', setTweenFactor)
-      .on('reInit', tweenScale)
-      .on('scroll', tweenScale)
-      .on('slideFocus', tweenScale)
-  }, [emblaApi, tweenScale])
+          const tweenValue = 1 - Math.abs(diffToTarget * tweenFactor.current);
+          const scale = numberWithinRange(tweenValue, 0, 1).toString();
+          const tweenNode = tweenNodes.current[slideIndex];
+          if (tweenNode) {
+            tweenNode.style.transform = `scale(${scale})`;
+          }
+        });
+      });
+    }, []);
 
   useEffect(() => {
     if (!emblaApi) {
       return;
     }
 
-    emblaApi.scrollPrev();
-  }, [props.goPrev]);
+    setTweenFactor(emblaApi);
+    tweenScale(emblaApi);
+
+    emblaApi.on('reInit', () => {
+      setTweenFactor(emblaApi);
+      tweenScale(emblaApi);
+    });
+    emblaApi.on('scroll', () => tweenScale(emblaApi));
+    emblaApi.on('slideFocus', () => tweenScale(emblaApi));
+  }, [emblaApi, tweenScale]);
 
   useEffect(() => {
-    if (!emblaApi) {
-      return;
+    if (onActiveIndexChange) {
+      onActiveIndexChange(selectedIndex);
     }
-    emblaApi.scrollNext();
-  }, [props.goNext]);
+  }, [selectedIndex]);
+
+  useEffect(() => {
+    if (emblaApi && activeIndex != null) {
+      emblaApi.scrollTo(activeIndex);
+    }
+  }, [emblaApi, activeIndex]);
+
+  useEffect(() => {
+    if (emblaApi && goPrev) {
+      emblaApi.scrollPrev();
+    }
+  }, [emblaApi, goPrev]);
+
+  useEffect(() => {
+    if (emblaApi && goNext) {
+      emblaApi.scrollNext();
+    }
+  }, [emblaApi, goNext]);
 
   const handleCarouselBadgeClick = (index: any) => {
     onDotButtonClick(index);
