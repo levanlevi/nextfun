@@ -7,16 +7,17 @@ import React, {
 import { EmblaCarouselType } from 'embla-carousel'
 
 type UseDotButtonType = {
-  selectedIndex: number
+  selectedIndex: number;
   scrollSnaps: number[]
   onDotButtonClick: (index: number) => void
 }
 
 export const useDotButton = (
+  initIndex: number = 0,
   emblaApi: EmblaCarouselType | undefined,
   onButtonClick?: (emblaApi: EmblaCarouselType) => void
 ): UseDotButtonType => {
-  const [selectedIndex, setSelectedIndex] = useState(0)
+  const [selectedIndex, setSelectedIndex] = useState(initIndex);
   const [scrollSnaps, setScrollSnaps] = useState<number[]>([])
 
   const onDotButtonClick = useCallback(

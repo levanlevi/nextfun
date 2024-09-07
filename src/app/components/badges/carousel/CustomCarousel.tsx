@@ -19,18 +19,18 @@ type PropType = {
 
 const TWEEN_FACTOR_BASE = 0.84;
 
-const EmblaCarousel: React.FC<PropType> = ({
+const EmblaCarousel = ({
   slides,
   options,
   goPrev,
   goNext,
   onActiveIndexChange,
   activeIndex
-}) => {
+}: PropType) => {
   const [emblaRef, emblaApi] = useEmblaCarousel(options);
   const tweenFactor = useRef(0);
   const tweenNodes = useRef<HTMLElement[]>([]);
-  const { selectedIndex, onDotButtonClick } = useDotButton(emblaApi);
+  const { selectedIndex, onDotButtonClick } = useDotButton(activeIndex, emblaApi);
 
   const setTweenFactor = useCallback((emblaApi: EmblaCarouselType) => {
     tweenFactor.current = TWEEN_FACTOR_BASE * emblaApi.scrollSnapList().length
@@ -79,25 +79,29 @@ const EmblaCarousel: React.FC<PropType> = ({
   }, [emblaApi, tweenScale]);
 
   useEffect(() => {
+    console.log('[selectedIndex[selectedIndex] CHANGE()]:', activeIndex, selectedIndex);
     if (onActiveIndexChange) {
       onActiveIndexChange(selectedIndex);
     }
   }, [selectedIndex]);
 
   useEffect(() => {
+    console.log('[selectedIndex[emblaApi, activeIndex] CHANGE()]:', selectedIndex);
     if (emblaApi && activeIndex != null) {
       emblaApi.scrollTo(activeIndex);
     }
   }, [emblaApi, activeIndex]);
 
   useEffect(() => {
-    if (emblaApi && goPrev) {
+    console.log('[selectedIndex[emblaApi, goPrev] CHANGE()]:', selectedIndex);
+    if (emblaApi) {
       emblaApi.scrollPrev();
     }
   }, [emblaApi, goPrev]);
 
   useEffect(() => {
-    if (emblaApi && goNext) {
+    console.log('[selectedIndex[emblaApi, goNext] CHANGE()]:', selectedIndex);
+    if (emblaApi) {
       emblaApi.scrollNext();
     }
   }, [emblaApi, goNext]);
