@@ -9,7 +9,11 @@ import EmblaCarousel from "./CustomCarousel";
 import { EmblaOptionsType } from 'embla-carousel'
 import { useEffect, useState } from "react";
 
-const Carousel = () => {
+type PropType = {
+    selectedCardId: string
+}
+
+const Carousel = (props: PropType) => {
     const badgeList: BadgesData = badgesJson as BadgesData;
     const [activeIndex, setActiveIndex] = useState(Math.floor(badgeList.length / 2));
     const OPTIONS: EmblaOptionsType = { loop: false };
@@ -25,8 +29,13 @@ const Carousel = () => {
     }
 
     useEffect(() => {
-        
+
     }, [activeIndex]);
+
+    useEffect(() => {
+        const newSelectedIndex = badgeList.findIndex(b => b.id === props.selectedCardId);
+        setActiveIndex(newSelectedIndex);
+    }, [props.selectedCardId]);
 
     const getSlideCards = () => {
         return badgeList.map((item, index) => (
@@ -34,19 +43,15 @@ const Carousel = () => {
                 {
                     (index === activeIndex) ? (
                         <>
-                            <BadgeCard
-                                id="pudgyOg"
-                                title={item.title}
-                                multiplier={item.multiplier}
-                                description={item.description}
-                                selected={true}>
+                            <BadgeCard badge={item}>
                             </BadgeCard>
+
                             <Box className="bg-background-elevation-2 rounded-lg w-[176px] py-1 px-4 mt-2 flex flex-col">
                                 <Text className="text-text-primary text-xs font-medium text-center">
                                     Reward Details
                                 </Text>
                                 <Text className="text-text-secondary text-xs font-medium text-center">
-                                    Liquidity Provision to ETH/USDC
+                                    {item.description}
                                 </Text>
                             </Box>
                         </>
@@ -70,6 +75,7 @@ const Carousel = () => {
                 <Box className="flex flex-row space-x-2 overflow-hidden">
                     {<EmblaCarousel
                         onActiveIndexChange={(index) => setActiveIndex(index)}
+                        activeIndex={activeIndex}
                         goNext={goNext}
                         goPrev={goPrev}
                         options={OPTIONS}

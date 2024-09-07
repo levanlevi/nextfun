@@ -3,7 +3,11 @@ import BadgeCard from "../BadgeCard";
 import badgesJson from './../../../../../public/data/badges.json';
 import { BadgesData } from "@/types/badge";
 
-const BadgeCards = () => {
+type PropType = {
+    onBadgeSelect: (id: string) => void
+}
+
+const BadgeCards = (props: PropType) => {
     const badgeList: BadgesData = badgesJson as BadgesData;
     return (
         <Box className="p-0 pb-5 rounded-lg">
@@ -13,7 +17,7 @@ const BadgeCards = () => {
             <Box className="flex overflow-x-auto space-x-2 p-5 bg-background-elevation-1 rounded-b-lg">
                 {badgeList.map((badge, index) => (
                     <Box key={index}>
-                        <BadgeCard {...badge} />
+                        <BadgeCard badge={badge} onClick={props.onBadgeSelect} />
                     </Box>
                 ))}
             </Box>

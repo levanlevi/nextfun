@@ -13,7 +13,8 @@ type PropType = {
   options?: EmblaOptionsType,
   goPrev?: boolean,
   goNext?: boolean,
-  onActiveIndexChange?: (index: number) => void
+  onActiveIndexChange?: (index: number) => void,
+  activeIndex?: number
 }
 
 const TWEEN_FACTOR_BASE = 0.84
@@ -33,6 +34,12 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
       props.onActiveIndexChange(selectedIndex);
     }
   }, [selectedIndex]);
+
+  useEffect(() => {
+    if (props.activeIndex != null) {
+      emblaApi?.scrollTo(props.activeIndex);
+    }
+  }, [props.activeIndex]);
 
   const {
     prevBtnDisabled,

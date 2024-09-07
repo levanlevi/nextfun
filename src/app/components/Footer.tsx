@@ -20,7 +20,7 @@ const Footer = memo(() => {
                 </Link>
             </Box>
             <Box className='flex justify-center flex-grow'>
-                <Image src={poweredBy} alt='Powered By Absinthe Labs' height={35} />
+                <Image src={poweredBy} alt='Powered By Absinthe Labs' width={212} height={35} />
             </Box>
         </footer>
     );

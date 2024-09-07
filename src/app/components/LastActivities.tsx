@@ -91,8 +91,8 @@ const LastActivities = () => {
                             <Box className="flex flex-row space-x-2">
                                 {
                                     activity.activity === 'Transaction' ?
-                                        <Image width={16} src={tx} alt="Transaction"></Image>
-                                        : <Image width={16} src={bridged} alt="Bridged"></Image>
+                                        <Image width={16} height={16} src={tx} alt="Transaction"></Image>
+                                        : <Image width={16} height={16} src={bridged} alt="Bridged"></Image>
                                 }
                                 <Text className="text-text-primary font-medium">{activity.activity}</Text>
                             </Box>
