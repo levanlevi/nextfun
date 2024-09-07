@@ -1,0 +1,14 @@
+const map = new Map<string, string>();
+map.set('frontend/src/utils/image.ts', `import { StaticImageData } from "next/image"`);
+map.set('discordOg', 'discordOg');
+map.set('incomeEngineer', 'incomeEngineer');
+map.set('liquidityMachine', 'liquidityMachine');
+map.set('pathfinderOg', 'pathfinderOg');
+map.set('pudgyOg', 'pudgyOg');
+map.set('rookie', 'rookie');
+map.set('checkBack', 'checkBack');
+map.set('yieldFarmer', 'defaultImage');
+map.set('securityAuditor', 'defaultImage');
+map.set('cryptoMiner', 'defaultImage');
+map.set('defiInvestor', 'defaultImage');
+export { map };

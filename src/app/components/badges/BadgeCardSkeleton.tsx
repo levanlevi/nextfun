@@ -1,6 +1,7 @@
 import { Box, Skeleton, Text } from "@radix-ui/themes";
 import Image from "next/image";
 import { Badge } from "@/types/badge";
+import { map as cointImageMap } from "@/utils/image";
 
 export const BadgeCardSkeleton = (badge: Badge) => {
     return (
@@ -8,7 +9,7 @@ export const BadgeCardSkeleton = (badge: Badge) => {
             <Box className="flex flex-col justify-between p-0 rounded-lg h-[98px] w-[96px] bg-background-elevation-3 cursor-pointer">
                 <Box className="flex justify-center items-center w-full h-[112px]">
                     <Image
-                        src={`/images/${badge.id}.png`}
+                        src={`/images/${cointImageMap.get(badge.id)}.png`}
                         className="rounded-full imginactive"
                         alt={badge.title}
                         width={64}
