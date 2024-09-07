@@ -6,7 +6,9 @@ import { Box } from '@radix-ui/themes';
 
 const Header = memo(() => {
     return (
-        <header className="flex items-center justify-between px-[112px] border-b border-background-elevation-2 mb-10 p-4">
+        <header className="flex items-center justify-between 
+        px-16 sm:px-18 md:px-20 lg:px-24 xl:px-28
+         border-b border-background-elevation-2 mb-10 p-4">
             <div className="flex items-center space-x-4">
                 <Link href="/">
                     <Image

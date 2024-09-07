@@ -7,7 +7,9 @@ import Link from 'next/link';
 
 const Footer = memo(() => {
     return (
-        <footer className='flex justify-between items-center p-2 px-[112px] bg-background-elevation-2'>
+        <footer className='flex justify-between items-center py-2 
+        px-16 sm:px-18 md:px-20 lg:px-24 xl:px-28
+         bg-background-elevation-2'>
             <Box className='flex space-x-4'>
                 <Link href='https://discord.com' className='bg-background-elevation-3 p-1 rounded-lg' target='_blank'>
                     <DiscordLogoIcon />

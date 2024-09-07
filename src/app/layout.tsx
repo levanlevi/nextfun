@@ -27,7 +27,7 @@ export default function RootLayout({
           className="bg-background">
           <ApolloProvider client={client}>
             <Header />
-            <div className="px-[112px]">
+            <div className="px-16 sm:px-18 md:px-20 lg:px-24 xl:px-28">
               <main>
                 {children}
               </main>
