@@ -24,6 +24,7 @@ const BadgeCard: React.FC<PropType> = (props) => {
             <Box className="flex justify-center items-center w-full h-[112px] bg-background-elevation-3">
                 <Image
                     src={`/images/${props.badge.id}.png`}
+                    className="rounded-full"
                     alt={props.badge.title}
                     width={64}
                     height={64}

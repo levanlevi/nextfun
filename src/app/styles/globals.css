@@ -51,3 +51,7 @@
     transform: scale(1);
   }
 }
+
+.imginactive {
+  filter: grayscale(100%);
+}

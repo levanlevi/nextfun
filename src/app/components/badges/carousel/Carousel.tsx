@@ -58,7 +58,7 @@ const Carousel = (props: PropType) => {
                             </Box>
                         </>
                     ) : (
-                        <BadgeCardSkeleton>
+                        <BadgeCardSkeleton key={index} {...item} >
                         </BadgeCardSkeleton>
                     )
                 }
