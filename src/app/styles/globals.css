@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 @import '@radix-ui/themes/styles.css';
+@import './embla.css';
 
 :root {
   --primary: #006258;
@@ -49,26 +50,4 @@
   100% {
     transform: scale(1);
   }
-}
-
-.embla {
-  overflow: hidden;
-  width: 100%;
-}
-
-.embla__container {
-  display: flex;
-  overflow: hidden;
-}
-
-.embla__slide {
-  flex: 0 0 auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin: 0 1rem;
-}
-
-.embla__controls {
-  display: none;
 }
