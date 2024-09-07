@@ -93,7 +93,7 @@ const Carousel = ({ badgeList, selectedCardId, onSelectedCardChange }: PropType)
                     <Image src={arrowNext} width={8} height={8} alt="Next" />
                 </Box>
             </Box>
-            <Info />
+            <Info actions={badgeList[activeIndex].actions ?? []} earnings={Math.round((Math.random() * 1000))} />
             <ActionList actions={badgeList[activeIndex].actions ?? []} />
         </>
     );

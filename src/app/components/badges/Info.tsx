@@ -1,6 +1,11 @@
-import { Badge, Box, Text } from "@radix-ui/themes";
+import { BadgeAction } from "@/types/badge";
+import { Box, Text } from "@radix-ui/themes";
 
-const Info = () => {
+type PropType = {
+    actions: BadgeAction[];
+    earnings: number;
+}
+const Info = ({ actions, earnings }: PropType) => {
     return (
         <Box className="flex flex-col sm:flex-row justify-between my-2">
             <Box className="flex flex-col sm:flex-row items-start sm:items-center space-y-2 sm:space-y-0 sm:space-x-1">
@@ -12,8 +17,8 @@ const Info = () => {
                 </Text>
             </Box>
             <Box className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-2">
-                <Box className="bg-background-elevation-3 text-text-secondary rounded-xl px-2">1/3 Completed</Box>
-                <Box className="bg-background-elevation-3 bg-primary-disabled text-primary-hover rounded-xl px-2">Total Earnings: 3,000</Box>
+                <Box className="bg-background-elevation-3 text-text-secondary rounded-xl px-2">{actions?.filter(a => a.isComplete)?.length}/{actions.length} Completed</Box>
+                <Box className="bg-background-elevation-3 bg-primary-disabled text-primary-hover rounded-xl px-2">Total Earnings: {earnings}</Box>
             </Box>
         </Box>
     )
