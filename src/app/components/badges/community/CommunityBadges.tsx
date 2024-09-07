@@ -16,7 +16,7 @@ const BadgeCards = (props: PropType) => {
             <Box className="flex w-full flex-wrap overflow-x-auto space-x-4 p-5 bg-background-elevation-1 rounded-b-lg scrollbar-thin scrollbar-thumb-primary-hover
             sm:flex-nowrap">
                 {props.badgeList.map((badge, index) => (
-                    <Box key={index} className="flex-shrink-0">
+                    <Box key={index} className="flex-shrink-0 sm:m-0">
                         <BadgeCard badge={badge} onClick={props.onBadgeSelect} />
                     </Box>
                 ))}
