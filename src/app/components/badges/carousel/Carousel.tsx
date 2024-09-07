@@ -11,10 +11,11 @@ import { useEffect, useState } from "react";
 type PropType = {
     badgeList: BadgesData;
     selectedCardId: string | null;
+    onSelectedCardChange: (id: string) => void;
 }
 
-const Carousel = (props: PropType) => {
-    const [activeIndex, setActiveIndex] = useState(Math.floor(props.badgeList.length / 2));
+const Carousel: React.FC<PropType> = ({ badgeList, selectedCardId, onSelectedCardChange }) => {
+    const [activeIndex, setActiveIndex] = useState(Math.floor(badgeList.length / 2));
     const OPTIONS: EmblaOptionsType = { loop: false };
     const [goPrev, setGoPrev] = useState(false);
     const [goNext, setGoNext] = useState(false);
@@ -27,20 +28,21 @@ const Carousel = (props: PropType) => {
         setGoNext(!goNext);
     }
 
-    useEffect(() => {
+    const handleActiveIndexChange = (index: number) => {
+        setActiveIndex(index);
+        onSelectedCardChange(badgeList[index].id);
+    }
 
-    }, [activeIndex]);
-
     useEffect(() => {
-        if (props.selectedCardId == null) {
+        if (selectedCardId == null) {
             return;
         }
-        const newSelectedIndex = props.badgeList.findIndex(b => b.id === props.selectedCardId);
+        const newSelectedIndex = badgeList.findIndex(b => b.id === selectedCardId);
         setActiveIndex(newSelectedIndex);
-    }, [props.selectedCardId]);
+    }, [selectedCardId]);
 
     const getSlideCards = () => {
-        return props.badgeList.map((item, index) => {
+        return badgeList.map((item, index) => {
             const isActive = index === activeIndex;
             return (
                 <Box className="embla__slide__badgecard" key={index}>
@@ -72,7 +74,7 @@ const Carousel = (props: PropType) => {
 
                 <Box className="flex flex-row space-x-2 overflow-hidden">
                     {<EmblaCarousel
-                        onActiveIndexChange={(index) => setActiveIndex(index)}
+                        onActiveIndexChange={handleActiveIndexChange}
                         activeIndex={activeIndex}
                         goNext={goNext}
                         goPrev={goPrev}
