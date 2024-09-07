@@ -1,6 +1,5 @@
-import { Box, Card, Text } from "@radix-ui/themes";
+import { Box, Text } from "@radix-ui/themes";
 import Image from "next/image";
-import { discordOg, pudgyOg } from "../../../../public";
 import { Badge, BadgesData } from "@/types/badge";
 
 type PropType = {

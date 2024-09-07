@@ -3,19 +3,18 @@ import BadgeCard from "../BadgeCard";
 import { BadgeCardSkeleton } from "../BadgeCardSkeleton";
 import Image from "next/image";
 import { arrowPrev, arrowNext } from "./../../../../../public";
-import badgesJson from './../../../../../public/data/badges.json';
 import { BadgesData } from "@/types/badge";
 import EmblaCarousel from "./CustomCarousel";
 import { EmblaOptionsType } from 'embla-carousel'
 import { useEffect, useState } from "react";
 
 type PropType = {
-    selectedCardId: string
+    badgeList: BadgesData;
+    selectedCardId: string | null;
 }
 
-const Carousel = (props: PropType) => {
-    const badgeList: BadgesData = badgesJson as BadgesData;
-    const [activeIndex, setActiveIndex] = useState(Math.floor(badgeList.length / 2));
+const Carousel = (props: PropType) => { 
+    const [activeIndex, setActiveIndex] = useState(Math.floor(props.badgeList.length / 2));
     const OPTIONS: EmblaOptionsType = { loop: false };
     const [goPrev, setGoPrev] = useState(false);
     const [goNext, setGoNext] = useState(false);
@@ -33,12 +32,15 @@ const Carousel = (props: PropType) => {
     }, [activeIndex]);
 
     useEffect(() => {
-        const newSelectedIndex = badgeList.findIndex(b => b.id === props.selectedCardId);
+        if (props.selectedCardId == null) {
+            return;
+        }
+        const newSelectedIndex = props.badgeList.findIndex(b => b.id === props.selectedCardId);
         setActiveIndex(newSelectedIndex);
     }, [props.selectedCardId]);
 
     const getSlideCards = () => {
-        return badgeList.map((item, index) => (
+        return props.badgeList.map((item, index) => (
             <Box className="embla__slide__badgecard" key={index}>
                 {
                     (index === activeIndex) ? (

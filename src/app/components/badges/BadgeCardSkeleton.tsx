@@ -1,6 +1,6 @@
-import { Box, Card, Skeleton, Text } from "@radix-ui/themes";
+import { Box, Skeleton, Text } from "@radix-ui/themes";
 import Image from "next/image";
-import { discordOg, pudgyOg } from "../../../../public";
+import { pudgyOg } from "../../../../public";
 
 export const BadgeCardSkeleton = () => {
     return (

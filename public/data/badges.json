@@ -62,7 +62,7 @@
             }
         ],
         "description": "Developer of smart contracts",
-        "selected": false
+        "selected": true
     },
     {
         "id": "rookie",
