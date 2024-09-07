@@ -13,9 +13,9 @@ const BadgeCards = (props: PropType) => {
             <Box className="px-5 py-3 bg-background-elevation-3 rounded-t-lg">
                 <h2 className="font-medium">Community Badges</h2>
             </Box>
-            <Box className="flex overflow-x-auto space-x-2 p-5 bg-background-elevation-1 rounded-b-lg">
+            <Box className="flex overflow-x-auto space-x-4 p-5 bg-background-elevation-1 rounded-b-lg scrollbar-thin scrollbar-thumb-primary-hover">
                 {props.badgeList.map((badge, index) => (
-                    <Box key={index}>
+                    <Box key={index} className="flex-shrink-0">
                         <BadgeCard badge={badge} onClick={props.onBadgeSelect} />
                     </Box>
                 ))}
