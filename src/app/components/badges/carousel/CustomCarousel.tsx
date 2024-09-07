@@ -26,12 +26,9 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
   const [emblaRef, emblaApi] = useEmblaCarousel(options);
   const tweenFactor = useRef(0);
   const tweenNodes = useRef<HTMLElement[]>([]);
-
-  const { selectedIndex } =
-    useDotButton(emblaApi);
+  const { selectedIndex, onDotButtonClick } = useDotButton(emblaApi);
 
   useEffect(() => {
-    console.log('selectedIndex Changed:', selectedIndex);
     if (props.onActiveIndexChange) {
       props.onActiveIndexChange(selectedIndex);
     }
@@ -95,6 +92,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
     if (!emblaApi) {
       return;
     }
+
     emblaApi.scrollPrev();
   }, [props.goPrev]);
 
@@ -105,12 +103,17 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
     emblaApi.scrollNext();
   }, [props.goNext]);
 
+  const handleCarouselBadgeClick = (index: any) => {
+    onDotButtonClick(index);
+  }
+
   return (
     <div className="embla">
       <div className="embla__viewport" ref={emblaRef}>
         <div className="embla__container">
           {slides.map((slide, index) => (
-            <div className="embla__slide" key={index}>
+            <div className="embla__slide" key={index}
+              onClick={() => handleCarouselBadgeClick(index)}>
               {slide}
             </div>
           ))}

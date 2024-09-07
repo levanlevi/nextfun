@@ -7,7 +7,7 @@ import badgesJson from './../../../../../public/data/badges.json';
 import { BadgesData } from "@/types/badge";
 import EmblaCarousel from "./CustomCarousel";
 import { EmblaOptionsType } from 'embla-carousel'
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Carousel = () => {
     const badgeList: BadgesData = badgesJson as BadgesData;
@@ -23,6 +23,10 @@ const Carousel = () => {
     const handleNext = () => {
         setGoNext(!goNext);
     }
+
+    useEffect(() => {
+        
+    }, [activeIndex]);
 
     const getSlideCards = () => {
         return badgeList.map((item, index) => (
