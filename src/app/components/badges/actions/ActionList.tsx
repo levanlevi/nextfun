@@ -25,11 +25,11 @@ const ActionList: FC<PropType> = ({ actions }) => {
     }
 
     return (
-        <Box className="flex flex-row space-x-2">
+        <Box className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-2">
             {actions.map((action, index) => (
                 <Box className="flex-1" key={index}>
                     <Box className={`border-b-4 pb-2 
-                        ${action.isComplete ? 'border-primary' : 'border-none'}`}>
+                    ${action.isComplete ? 'border-primary' : 'border-none'}`}>
                         <Action
                             text={action.text}
                             isComplete={action.isComplete}>
@@ -38,6 +38,7 @@ const ActionList: FC<PropType> = ({ actions }) => {
                 </Box>
             ))}
         </Box>
+
     );
 };
 
