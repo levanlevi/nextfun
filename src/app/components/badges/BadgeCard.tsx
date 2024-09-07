@@ -17,14 +17,14 @@ const BadgeCard: React.FC<PropType> = (props) => {
 
     return (
         <Box onClick={handleBadgeClick} className={`flex flex-col justify-between p-0 rounded-lg h-[178px] w-[176px] bg-background-elevation-3
-                    ${props.badge?.selected ? "border border-states-success" : "border-none"}`}>
+                    ${props.badge?.selected ? "border border-states-success" : "border-none"} cursor-pointer`}>
             <Box className="text-center bg-background-elevation-2 p-1 rounded-lg">
                 <h2>{props.badge.title}</h2>
             </Box>
             <Box className="flex justify-center items-center w-full h-[112px] bg-background-elevation-3">
                 <Image
                     src={`/images/${props.badge.id}.png`}
-                    className="rounded-full"
+                    className={`rounded-full ${props.badge?.selected ? 'border-4 border-states-success' : 'imginactive'}`}
                     alt={props.badge.title}
                     width={64}
                     height={64}

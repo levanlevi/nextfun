@@ -5,7 +5,7 @@ import { Badge } from "@/types/badge";
 export const BadgeCardSkeleton = (badge: Badge) => {
     return (
         <>
-            <Box className="flex flex-col justify-between p-0 rounded-lg h-[98px] w-[96px] bg-background-elevation-3">
+            <Box className="flex flex-col justify-between p-0 rounded-lg h-[98px] w-[96px] bg-background-elevation-3 cursor-pointer">
                 <Box className="flex justify-center items-center w-full h-[112px]">
                     <Image
                         src={`/images/${badge.id}.png`}

@@ -13,7 +13,7 @@ type PropType = {
     selectedCardId: string | null;
 }
 
-const Carousel = (props: PropType) => { 
+const Carousel = (props: PropType) => {
     const [activeIndex, setActiveIndex] = useState(Math.floor(props.badgeList.length / 2));
     const OPTIONS: EmblaOptionsType = { loop: false };
     const [goPrev, setGoPrev] = useState(false);
@@ -40,14 +40,13 @@ const Carousel = (props: PropType) => {
     }, [props.selectedCardId]);
 
     const getSlideCards = () => {
-        return props.badgeList.map((item, index) => (
-            <Box className="embla__slide__badgecard" key={index}>
-                {
-                    (index === activeIndex) ? (
+        return props.badgeList.map((item, index) => {
+            const isActive = index === activeIndex;
+            return (
+                <Box className="embla__slide__badgecard" key={index}>
+                    {isActive ? (
                         <>
-                            <BadgeCard badge={item}>
-                            </BadgeCard>
-
+                            <BadgeCard badge={{ ...item, selected: true }} />
                             <Box className="bg-background-elevation-2 rounded-lg w-[176px] py-1 px-4 mt-2 flex flex-col">
                                 <Text className="text-text-primary text-xs font-medium text-center">
                                     Reward Details
@@ -57,13 +56,10 @@ const Carousel = (props: PropType) => {
                                 </Text>
                             </Box>
                         </>
-                    ) : (
-                        <BadgeCardSkeleton key={index} {...item} >
-                        </BadgeCardSkeleton>
-                    )
-                }
-            </Box>
-        ))
+                    ) : (<BadgeCardSkeleton {...item} />)}
+                </Box>
+            )
+        });
     }
 
     return (
