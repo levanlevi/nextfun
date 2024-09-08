@@ -68,3 +68,7 @@
 .row-highlight {
   animation: highlight 2s ease-out;
 }
+
+.translate-x-150 {
+  transform: translateX(150%);
+}
