@@ -55,3 +55,16 @@
 .imginactive {
   filter: grayscale(100%);
 }
+
+@keyframes highlight {
+  0% {
+    background-color: #8AB7B2;
+  }
+  100% {
+    background-color: transparent;
+  }
+}
+
+.row-highlight {
+  animation: highlight 2s ease-out;
+}

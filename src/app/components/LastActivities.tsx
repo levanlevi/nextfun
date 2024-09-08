@@ -10,9 +10,10 @@ import CopyButton from "./common/CopyButton";
 import Image from "next/image";
 import { bridged, tx } from "../../../public";
 
+const MAX_ROWS_PER_VIEW = 12;
 const GET_LOGS = gql`
     subscription ActivityLogsSubscription(
-            $batch_size: Int! = 5, 
+            $batch_size: Int! = 12, 
             $cursor: [logs_stream_cursor_input]!) {
         logs_stream(
             batch_size: $batch_size,
@@ -28,7 +29,7 @@ const GET_LOGS = gql`
 
 const LastActivities = () => {
     // This is a hack to get the last 50 seconds of logs for smooth demo app
-    const nowMinus50Secs = new Date(new Date().getTime() - 475 * 1000);
+    const nowMinus50Secs = new Date(new Date().getTime() - 50 * 1000);
     const [lastBlockTimeStamp, setLastBlockTimeStamp] = useState(nowMinus50Secs.toISOString());
     const [activities, setActivities] = useState<Activity[]>([]);
     const { data, loading, error } =
@@ -46,7 +47,6 @@ const LastActivities = () => {
                 if (!subscriptionData.data) {
                     return;
                 }
-                console.log(subscriptionData.data);
                 const logs = subscriptionData.data.logs_stream;
 
                 if (logs.length > 0) {
@@ -61,11 +61,12 @@ const LastActivities = () => {
                         link: '#'
                     }
                 }) ?? [];
-                setActivities(newActivities);
+                const maxRows = newActivities.concat(activities);
+                maxRows.splice(MAX_ROWS_PER_VIEW);
+                setActivities(maxRows);
             }
         });
 
-    // todo fix review
     if (error) {
         return <p>Error: {error.message}</p>;
     }
@@ -86,7 +87,7 @@ const LastActivities = () => {
 
             <Table.Body>
                 {activities && activities.length > 0 && activities.map((activity) => (
-                    <Table.Row key={activity.txId}>
+                    <Table.Row key={activity.txId} className="row-highlight hover:bg-primary">
                         <Table.Cell>
                             <Box className="flex flex-row space-x-2">
                                 {
@@ -125,7 +126,7 @@ const LastActivities = () => {
                         </Table.Cell>
                         <Table.Cell>
                             <Link href="/">
-                                <ExternalLinkIcon className="text-primary" />
+                                <ExternalLinkIcon className="text-text-primary" />
                             </Link>
                         </Table.Cell>
                     </Table.Row>

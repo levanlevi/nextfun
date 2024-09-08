@@ -83,28 +83,24 @@ const EmblaCarousel = ({
   }, [emblaApi, tweenScale]);
 
   useEffect(() => {
-    console.log('[selectedIndex[selectedIndex] CHANGE()]:', activeIndex, selectedIndex);
     if (onActiveIndexChange) {
       onActiveIndexChange(selectedIndex);
     }
   }, [selectedIndex]);
 
   useEffect(() => {
-    console.log('[selectedIndex[emblaApi, activeIndex] CHANGE()]:', selectedIndex);
     if (emblaApi && activeIndex != null) {
       emblaApi.scrollTo(activeIndex);
     }
   }, [emblaApi, activeIndex]);
 
   useEffect(() => {
-    console.log('[selectedIndex[emblaApi, goPrev] CHANGE()]:', selectedIndex);
     if (emblaApi) {
       emblaApi.scrollPrev();
     }
   }, [emblaApi, goPrev]);
 
   useEffect(() => {
-    console.log('[selectedIndex[emblaApi, goNext] CHANGE()]:', selectedIndex);
     if (emblaApi) {
       emblaApi.scrollNext();
     }
