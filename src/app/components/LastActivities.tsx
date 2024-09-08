@@ -87,7 +87,7 @@ const LastActivities = () => {
 
             <Table.Body>
                 {activities && activities.length > 0 && activities.map((activity) => (
-                    <Table.Row key={activity.txId} className="row-highlight hover:bg-primary">
+                    <Table.Row key={activity.txId} className="row-highlight hover:bg-primary-hover">
                         <Table.Cell>
                             <Box className="flex flex-row space-x-2">
                                 {
